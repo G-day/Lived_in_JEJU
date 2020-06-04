@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         // 파이어베이스 인증 객체 선언
         firebaseAuth = FirebaseAuth.getInstance();
 
-        editTextEmail = findViewById(R.id.et_eamil);
+        editTextEmail = findViewById(R.id.et_email);
         editTextPassword = findViewById(R.id.et_password);
     }
 
