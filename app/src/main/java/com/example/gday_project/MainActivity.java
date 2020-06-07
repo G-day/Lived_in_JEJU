@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         mMap.addMarker(markerOptions);//마커 생성
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(33.516262, 126.505955),16));
-        //카메라가 보이는 위치 
+        //카메라가 보이는 위치
     }
     @Override
     public void onStart() {
