@@ -24,7 +24,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 //-------------------구글맵
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
-
+    GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,17 +41,24 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
     @Override//구글맵이 준비가 되면 호출
     public void onMapReady(GoogleMap googleMap) {
-        //마커 찍기(핀)
-        LatLng location=new LatLng(33.506109, 126.510333);//위도 경도(제주도 보물섬)
+        mMap=googleMap;
+
+        //구글맵에 표시할 마커에 대한 옵션 설정
         MarkerOptions markerOptions= new MarkerOptions();
-        markerOptions.title("제주도 보물섬");
-        markerOptions.snippet("자전거 대여소!");
-        markerOptions.position(location);
-        googleMap.addMarker(markerOptions);//마커옵션 생성
+        markerOptions.position(new LatLng(33.506109, 126.510333))//위도 경도(제주도 보물섬)위치설정
+                .title("제주도 보물섬")
+                .snippet("자전거 대여소!")
+                .alpha(0.7f);//마커의 투명도 설정
+        mMap.addMarker(markerOptions);//마커 생성
 
-        //실제 마커를 비추고 있는 화면
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,16));
+        markerOptions.position(new LatLng(33.516262, 126.505955))//
+                .title("제주도 2")
+                .snippet("자전거 2!")
+                .alpha(0.7f);//마커의 투명도 설정
 
+        mMap.addMarker(markerOptions);//마커 생성
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(33.516262, 126.505955),16));
+        //카메라가 보이는 위치 
     }
     @Override
     public void onStart() {
@@ -61,9 +68,4 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void updateUI(FirebaseUser currentUser) {
     }
 
-
-    // 회원가입 버튼 클릭 시
-    public void joinBtn(View v){
-
-    }
 }
