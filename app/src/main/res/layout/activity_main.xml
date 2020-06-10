@@ -7,24 +7,38 @@
     tools:context=".MainActivity"
     tools:ignore="ExtraText">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="407dp"
-        android:layout_height="65dp"
-        android:padding="10dp"
-        android:text="@string/app_name"
-        android:textSize="25sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <fragment
-        android:id="@+id/googleMap"
-        class="com.google.android.gms.maps.MapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-44dp"
-        tools:layout_editor_absoluteY="-50dp" />
-
-    />
+    <Button
+        android:id="@+id/mappage2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginBottom="363dp"
+        android:text="제주 둘러보기_산책로"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/mappage"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+//산책로 버튼
+    <Button
+        android:id="@+id/mappage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="68dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="284dp"
+        android:text="제주 둘러보기_자전거대여소"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+//자전거 대여소 버튼
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,51 +17,45 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-//-------------------구글맵
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-//-------------------구글맵
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
-    GoogleMap mMap;
+public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("살어리랏다 in JEJU");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //구글맵
-        FragmentManager fragmentManager = getFragmentManager();
-        //구글맵
-        MapFragment mapFragment = (MapFragment) fragmentManager.findFragmentById(R.id.googleMap);
-        mapFragment.getMapAsync(this);
+       Button mappage=(Button)findViewById(R.id.mappage);//자전거 대여소 맵으로 이동
 
+       mappage.setOnClickListener(new View.OnClickListener(){
+           @Override
+           public void onClick(View v) {
+               Toast.makeText(getApplicationContext(),"자전거 대여소 페이지 입니다.",Toast.LENGTH_LONG).show();;
+               //페이지 넘길때 안내말말
+              Intent myintent=new Intent(MainActivity.this,SecondActivity.class);
+              //페이지를 이동시켜주는 Intent 이동할페이지명.this 도착할페이지명.class형식으로 작성
+               startActivity(myintent);
+               finish();
 
+           }
+       });
+       //----------------------------------------------------------------------------------자전거대여소:송히
+        Button mappage2=(Button)findViewById(R.id.mappage2);//산책로 맵으로 이동
+
+        mappage2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Toast.makeText(getApplicationContext(),"산책로 페이지 입니다.",Toast.LENGTH_LONG).show();;
+                //페이지 넘길때 안내말말
+                Intent myintent2=new Intent(MainActivity.this,ThirdActivity.class);
+                //페이지를 이동시켜주는 Intent 이동할페이지명.this 도착할페이지명.class형식으로 작성
+                startActivity(myintent2);
+                finish();
+
+            }
+        });
     }
-    @Override//구글맵이 준비가 되면 호출
-    public void onMapReady(GoogleMap googleMap) {
-        mMap=googleMap;
 
-        //구글맵에 표시할 마커에 대한 옵션 설정
-        MarkerOptions markerOptions= new MarkerOptions();
-        markerOptions.position(new LatLng(33.506109, 126.510333))//위도 경도(제주도 보물섬)위치설정
-                .title("제주도 보물섬")
-                .snippet("자전거 대여소!")
-                .alpha(0.7f);//마커의 투명도 설정
-        mMap.addMarker(markerOptions);//마커 생성
-
-        markerOptions.position(new LatLng(33.516262, 126.505955))//
-                .title("제주도 2")
-                .snippet("자전거 2!")
-                .alpha(0.7f);//마커의 투명도 설정
-
-        mMap.addMarker(markerOptions);//마커 생성
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(33.516262, 126.505955),16));
-        //카메라가 보이는 위치
-    }
     @Override
     public void onStart() {
         super.onStart();
