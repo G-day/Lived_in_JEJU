@@ -45,8 +45,14 @@
                 android:text="재식재식"
                 android:layout_margin="5dp" />
 
-    </LinearLayout>
 
-</LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
 
 </LinearLayout>

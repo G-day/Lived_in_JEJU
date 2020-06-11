@@ -6,7 +6,7 @@
     android:padding="10dp">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/titleEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -15,7 +15,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/contentEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -30,4 +30,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="완료" />
+
 </LinearLayout>

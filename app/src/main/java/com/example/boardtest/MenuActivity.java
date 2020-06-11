@@ -1,20 +1,33 @@
 package com.example.boardtest;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MenuActivity extends AppCompatActivity {
+
+    private static final String TAG = "MenuActivity";
+
+    @Override
+    public void onBackPressed() { // 뒤로가기 버튼 클릭했을 때 홈으로 이동하기
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,35 +40,38 @@ public class MenuActivity extends AppCompatActivity {
            myStartActivity(LoginActivity.class);
         }
 
-        else { //로그인 되었으면 회원정보 가져옴
-                for (UserInfo profile : user.getProviderData()) {
-                    // Name, email address, and profile photo Url
-                    String name = profile.getDisplayName();
-                    Log.e("이름: ", "이름: " + name);
-                    if (name != null) {
-                        if (name.length() == 0) {
-                            myStartActivity(MemberInfoActivity.class);
+        else {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            final DocumentReference docRef = db.collection("users").document(user.getUid());
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if(document != null) {
+                            if (document.exists()) {
+                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                            } else {
+                                Log.d(TAG, "No such document");
+                                myStartActivity(MemberInitActivity.class);
+                            }
                         }
+                    } else {
+                        Log.d(TAG, "get failed with ", task.getException());
                     }
                 }
-
+            });
         }
 
 
         findViewById(R.id.logoutBtn).setOnClickListener(onClickListener);
         findViewById(R.id.recruitBotton).setOnClickListener(onClickListener);
         findViewById(R.id.applyButton).setOnClickListener(onClickListener);
-        findViewById(R.id.communicateBotton).setOnClickListener(onClickListener);
+        findViewById(R.id.socialBotton).setOnClickListener(onClickListener);
         findViewById(R.id.lookAroundButton).setOnClickListener(onClickListener);
     }
 
-    @Override
-    public void onBackPressed() { // 뒤로가기 버튼 클릭했을 때 홈으로 이동하기
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         public void onClick(View v) {
@@ -72,8 +88,8 @@ public class MenuActivity extends AppCompatActivity {
                 case R.id.applyButton:
                     myStartActivity(ApplyBoardActivity.class);
                     break;
-                case R.id.communicateBotton:
-                    myStartActivity(CommunicateBoardActivity.class);
+                case R.id.socialBotton:
+                    myStartActivity(SocialBoardActivity.class);
                     break;
             }
         }

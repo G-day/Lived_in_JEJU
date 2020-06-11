@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.loginButton:
-                    Log.d("호출됨", "호출됨");
                     myStartActivity(LoginActivity.class);
                     break;
             }

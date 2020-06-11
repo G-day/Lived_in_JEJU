@@ -45,12 +45,12 @@ public class ApplyBoardActivity extends AppCompatActivity {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // firebase DB의 데이터를 받아오는 곳
-                arrayList.clear(); // 기존 배열리스트가 존재하지 않게 초기화
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) { // 반복문으로 데이터 List를 추출해냄
-                    ApplyPost applyPost = snapshot.getValue(ApplyPost.class); // 만들어뒀던 ApplyPost 객체에 데이터를 담는다.
-                    arrayList.add(applyPost); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
-                }
+                    // firebase DB의 데이터를 받아오는 곳
+                    arrayList.clear(); // 기존 배열리스트가 존재하지 않게 초기화
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) { // 반복문으로 데이터 List를 추출해냄
+                        ApplyPost applyPost = snapshot.getValue(ApplyPost.class); // 만들어뒀던 ApplyPost 객체에 데이터를 담는다.
+                        arrayList.add(applyPost); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
+                    }
 
                 adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침
             }
@@ -63,7 +63,7 @@ public class ApplyBoardActivity extends AppCompatActivity {
         });
 
 
-        adapter = new CustomAdapter(arrayList, this);
+        adapter = new ApplyAdapter(arrayList, this);
         recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
 
         findViewById(R.id.writeBtn).setOnClickListener(onClickListener); // 글쓰기 버튼

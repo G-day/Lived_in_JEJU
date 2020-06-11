@@ -38,7 +38,7 @@ public class SignUpActivity extends AppCompatActivity {
                  switch (v.getId()){
                  case R.id.signUpButton:
                      singUP();
-                     myStartActivity(LoginActivity.class);
+                     myStartActivity(MemberInitActivity.class);
                      finish();
                      break;
              }

@@ -15,12 +15,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 //DB와 안드로이드 중간 역할하는 어댑터
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
+public class ApplyAdapter extends RecyclerView.Adapter<ApplyAdapter.CustomViewHolder> {
 
     private ArrayList<ApplyPost> arrayList;
     private Context context;
 
-    public CustomAdapter(ArrayList<ApplyPost> arrayList, Context context) {
+    public ApplyAdapter(ArrayList<ApplyPost> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }
@@ -28,7 +28,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     @NonNull
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.apply_list_item, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
         return holder;
     }
