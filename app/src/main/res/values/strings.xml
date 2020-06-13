@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BoardTest</string>
+    <string name="app_name">BoardTest</string> // 앱 이름
     <string name="request_permission">This sample needs camera permission.</string>
     <string name="camera_error">This device doesn\'t support Camera2 API.</string>
 

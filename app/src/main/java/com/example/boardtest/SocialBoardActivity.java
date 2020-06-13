@@ -43,17 +43,32 @@ public class SocialBoardActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<SocialPost>(); // Apply 객체를 담을 어레이 리스트 (어댑터 쪽으로)
 
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Log.e("로그","0");
+        db.collection("SocialPost")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        Log.e("로그","1");
+                        if (task.isSuccessful()) {
+                            Log.e("로그", "2");
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.e(TAG, document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+        /*
 
-
-        db.collection("Post")
+        db.collection("SocialPost")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            arrayList.clear(); // 기존 배열리스트가 존재하지 않게 초기화
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 SocialPost socialPost = (SocialPost)document.getData(); // 만들어뒀던 ApplyPost 객체에 데이터를 담는다.
@@ -65,12 +80,12 @@ public class SocialBoardActivity extends AppCompatActivity {
                         }
                     }
                 });
-
+         */
+        Log.e("로그","-1");
         adapter = new SocialAdapter(arrayList, this);
         recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
 
         findViewById(R.id.writeBtn).setOnClickListener(onClickListener); // 글쓰기 버튼
-
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {

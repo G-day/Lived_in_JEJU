@@ -86,7 +86,7 @@ public class MenuActivity extends AppCompatActivity {
                     myStartActivity(RecuritBoardActivity.class);
                     break;
                 case R.id.applyButton:
-                    myStartActivity(ApplyBoardActivity.class);
+                    myStartActivity(SocialBoardActivity.class);
                     break;
                 case R.id.socialBotton:
                     myStartActivity(SocialBoardActivity.class);

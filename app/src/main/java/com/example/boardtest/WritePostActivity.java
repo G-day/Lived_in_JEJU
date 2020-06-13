@@ -30,6 +30,8 @@ public class WritePostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_post);
 
+        findViewById(R.id.imageBtn).setOnClickListener(onClickListener);
+        findViewById(R.id.videoBtn).setOnClickListener(onClickListener);
         findViewById(R.id.completeBtn).setOnClickListener(onClickListener);
     }
 
@@ -40,7 +42,13 @@ public class WritePostActivity extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.completeBtn:
                     profileUpdate();
-                    myStartActivity(ApplyBoardActivity.class);
+                    myStartActivity(SocialBoardActivity.class);
+                    break;
+                case R.id.imageBtn:
+
+                    break;
+                case R.id.videoBtn:
+
                     break;
             }
         }
@@ -62,13 +70,15 @@ public class WritePostActivity extends AppCompatActivity {
         String title = ((EditText) findViewById(R.id.titleEditText)).getText().toString();
         String content = ((EditText) findViewById(R.id.contentEditText)).getText().toString();
         dateNow();
+        String userName = "Moon";
+
 
         if (title.length() > 0 && content.length() > 0) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             // Access a Cloud Firestore instance from your Activity
             FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-            PostInfo postInfo = new PostInfo(title, content, formatDate);
+            PostInfo postInfo = new PostInfo(title, content, userName, formatDate);
 
             if( user!= null){
                 db.collection("SocialPost").document(user.getUid()).set(postInfo)

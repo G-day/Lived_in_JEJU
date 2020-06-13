@@ -5,11 +5,13 @@ public class PostInfo {
     private String title;
     private String content;
     private String date;
+    private String userName;
 
-    public PostInfo(String title, String content, String date) {
+    public PostInfo(String title, String content, String date, String userName) {
         this.title = title;
         this.content = content;
         this.date = date;
+        this.userName = userName;
     }
 
     public String getTitle() {
@@ -34,6 +36,14 @@ public class PostInfo {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
 
