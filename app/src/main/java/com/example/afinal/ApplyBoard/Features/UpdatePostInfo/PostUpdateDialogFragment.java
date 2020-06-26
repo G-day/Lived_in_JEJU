@@ -1,3 +1,6 @@
+// Copyright 2020. 문재식 All rights reserved //
+
+
 package com.example.afinal.ApplyBoard.Features.UpdatePostInfo;
 
 import android.app.Dialog;

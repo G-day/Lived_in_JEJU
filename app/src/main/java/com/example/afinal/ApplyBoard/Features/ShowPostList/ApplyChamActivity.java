@@ -1,3 +1,6 @@
+// Copyright 2020. 문재식 All rights reserved //
+
+
 package com.example.afinal.ApplyBoard.Features.ShowPostList;
 
 import android.annotation.SuppressLint;
@@ -27,6 +30,11 @@ public class ApplyChamActivity extends AppCompatActivity {
         findViewById(R.id.call).setOnClickListener(onClickListener);
         findViewById(R.id.message).setOnClickListener(onClickListener);
     }
+
+/*
+작성자: 2015023025 배나영
+역할: 메시지 전송, 전화 걸기 기능
+*/
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         public void onClick(View v) {

@@ -1,3 +1,8 @@
+/*
+작성자: 2015023025 배나영
+역할: 마이페이지 UI, 회원탈퇴, 대화박스
+ */
+
 package com.example.afinal;
 
 import android.content.DialogInterface;

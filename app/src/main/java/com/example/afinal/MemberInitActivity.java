@@ -1,3 +1,9 @@
+/* **********************************************
+ * 프로그램명 : MemberInfo_Business.java
+ * 작성자 : 2018038041 김서빈
+ * 작성일 : 2020.06.09
+ * 프로그램 설명 : 살어리랏다 in Jeju의  회원정보 입력 받아 Firebase에 저장
+ ************************************************/
 package com.example.afinal;
 
 import android.content.Intent;
